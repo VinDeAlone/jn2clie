@@ -9,7 +9,7 @@ pipeline{
         }
         stage("Build docker image"){
             steps{
-                powershell "docker build -t vindealone/democlientjenkinsimage:0.0.2 ."
+                powershell "docker build -t vindealone/democlientjenkinsimage:0.0.3 ."
             }
         }
         stage("Upload to docker hub"){
@@ -17,7 +17,7 @@ pipeline{
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
                     powershell "docker login -u vindealone -p ${dockerpwd}"
                 }
-                powershell "docker push vindealone/democlientjenkinsimage:0.0.2"
+                powershell "docker push vindealone/democlientjenkinsimage:0.0.3"
             }
         }
     }
